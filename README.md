@@ -4,11 +4,8 @@
 
 ## Introduction
 This repository contains Python code implementing the **Susceptible-Infected-Recovered (SIR)** model for epidemiological analysis. The data used spans from 2020 to 2022 and was obtained from the **European Centre for Disease Prevention and Control (ECDC)**. Each row in the dataset represents daily new cases and deaths reported for countries within the EU/EEA. The SIR model provides insights into the progression of the COVID-19 pandemic in various countries.
-
-The recovery period (R) is assumed to last **14 days**, based on guidelines from the **World Health Organization (WHO)**, which state that COVID-19 symptoms generally resolve within 1 to 14 days.
-
-In some cases, initial rows with null or zero values were removed from the case and death columns to ensure accurate analysis. For example, in countries such as Hungary and Ireland, the first rows with zero values were removed, which allowed the model to be fitted correctly. 
-However, in countries such as Czechia, Lithuania and Romania, the absence of significant values in the case or death columns during most of the period analyzed made it impossible to apply the model, so these countries were excluded.
+The recovery period (R) is assumed to last **14 days**, based on guidelines from the **World Health Organization (WHO)**, which state that COVID-19 symptoms generally resolve within 1 to 14 days. 
+In some cases, initial rows with null or zero values were removed from the case and death columns to ensure accurate analysis. For example, in countries such as Hungary and Ireland, the first rows with zero values were removed, which allowed the model to be fitted correctly. However, in countries such as Czechia, Lithuania and Romania, the absence of significant values in the case or death columns during most of the period analyzed made it impossible to apply the model, so these countries were excluded.
 ---
 
 ## Methodology
