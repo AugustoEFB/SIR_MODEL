@@ -21,11 +21,11 @@ The recovery period (\(R\)) is assumed to last **14 days**, based on guidelines 
 
 ### Model Implementation
 - The SIR model equations:
-  \[
-  \frac{dS}{dt} = -\beta \frac{S I}{N}, \quad
-  \frac{dI}{dt} = \beta \frac{S I}{N} - \gamma I, \quad
-  \frac{dR}{dt} = \gamma I
-  \]
+  ```
+  dS/dt = -beta * S * I / N
+  dI/dt = beta * S * I / N - gamma * I
+  dR/dt = gamma * I
+  ```
 - Parameters \(\beta\) (infection rate) and \(\gamma\) (recovery rate) are estimated using **nonlinear least squares** (via `scipy.optimize.curve_fit`).
 
 ### Analysis
@@ -64,11 +64,9 @@ The recovery period (\(R\)) is assumed to last **14 days**, based on guidelines 
 ## Requirements
 - Python 3.7+
 - Libraries:
-  - `pandas`: Data manipulation
-  - `numpy`: Numerical operations
-  - `matplotlib`: Plotting
-  - `scipy`: Model fitting and numerical integration
-  - `json`: Reading and writing parameter files
+  ```bash
+  pip install pandas numpy matplotlib scipy
+  ```
 
 ---
 
