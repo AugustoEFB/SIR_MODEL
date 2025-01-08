@@ -14,19 +14,26 @@ The recovery period (\(R\)) is assumed to last **14 days**, based on guidelines 
 ### Data Preprocessing
 - The dataset includes daily new cases, deaths, and population data for multiple countries.
 - Dates are converted to Python’s datetime format, and data is sorted chronologically by country.
-- Cumulative cases, deaths, and recovered individuals are calculated:
-  - **Recovered**: \( \text{cum\_cases} \) shifted by 14 days.
-  - **Active infected**: \( \text{cum\_cases} - \text{cum\_deaths} - \text{recovered} \).
-  - **Susceptible population**: \( N - \text{infected} - \text{recovered} \), where \( N \) is the total population.
+- Cumulative cases, deaths, and recovered individuals are calculated as follows:
+  1. **Recovered**: Calculated by shifting cumulative cases (`cum_cases`) by 14 days.
+  2. **Active infected**: \( 	ext{Active Infected} = \text{cum\_cases} - \text{cum\_deaths} - \text{recovered} \).
+  3. **Susceptible population**: \( 	ext{Susceptible} = N - 	ext{infected} - 	ext{recovered} \), where \( N \) is the total population.
 
 ### Model Implementation
-- The SIR model equations:
+- The SIR model equations are:
   ```
   dS/dt = -beta * S * I / N
   dI/dt = beta * S * I / N - gamma * I
   dR/dt = gamma * I
   ```
-- Parameters \(\beta\) (infection rate) and \(\gamma\) (recovery rate) are estimated using **nonlinear least squares** (via `scipy.optimize.curve_fit`).
+  - Here:
+    - \( S \): Number of susceptible individuals.
+    - \( I \): Number of infected individuals.
+    - \( R \): Number of recovered individuals.
+    - \( \beta \): Infection rate.
+    - \( \gamma \): Recovery rate.
+    - \( N \): Total population.
+- Parameters \( \beta \) (infection rate) and \( \gamma \) (recovery rate) are estimated using **nonlinear least squares** with the `scipy.optimize.curve_fit` method.
 
 ### Analysis
 - Each country’s data is modeled separately. Inconsistent or incomplete data, such as zero or missing values, are handled:
@@ -44,19 +51,19 @@ The recovery period (\(R\)) is assumed to last **14 days**, based on guidelines 
 ### Workflow
 1. **Loading the data**:
    - COVID-19 data for EU/EEA countries from ECDC in CSV format.
-   - Parameters (\(\beta\) and \(\gamma\)) are saved to and loaded from a JSON file.
+   - Parameters (\( \beta \) and \( \gamma \)) are saved to and loaded from a JSON file.
 
 2. **Data Cleaning**:
    - Handling missing values, empty rows, and inconsistent data per country.
 
 3. **Fitting the SIR model**:
-   - Estimation of \(\beta\) and \(\gamma\) using least squares fitting to active infection data.
+   - Estimation of \( \beta \) and \( \gamma \) using least squares fitting to active infection data.
 
 4. **Model Simulation**:
    - Numerical integration of SIR equations using `scipy.integrate.odeint`.
 
 5. **Visualization**:
-   - Graphical representation of \(S\), \(I\), and \(R\) trends over time.
+   - Graphical representation of \( S \), \( I \), and \( R \) trends over time.
    - Graphs are saved locally for review.
 
 ---
@@ -94,8 +101,8 @@ The recovery period (\(R\)) is assumed to last **14 days**, based on guidelines 
    ```
 
 5. Output:
-   - Graphs for \(S\), \(I\), and \(R\) saved as PNG files in the working directory.
-   - Estimated \(\beta\) and \(\gamma\) values saved in `params.json`.
+   - Graphs for \( S \), \( I \), and \( R \) saved as PNG files in the working directory.
+   - Estimated \( \beta \) and \( \gamma \) values saved in `params.json`.
 
 ---
 
