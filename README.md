@@ -8,7 +8,7 @@ This repository contains Python code implementing the **Susceptible-Infected-Rec
 The recovery period (R) is assumed to last **14 days**, based on guidelines from the **World Health Organization (WHO)**, which state that COVID-19 symptoms generally resolve within 1 to 14 days.
 
 In some cases, initial rows with null or zero values were removed from the case and death columns to ensure accurate analysis. For example, in countries such as Hungary and Ireland, the first rows with zero values were removed, which allowed the model to be fitted correctly. 
-However, in countries such as Czechia, Lithuania and Romania, the absence of significant values in the case or death columns during most of the period analyzed made it impossible to apply the model, so these countries were excluded. 
+However, in countries such as Czechia, Lithuania and Romania, the absence of significant values in the case or death columns during most of the period analyzed made it impossible to apply the model, so these countries were excluded.
 ---
 
 ## Methodology
